@@ -886,15 +886,19 @@
 <!-- GLOBAL TOAST -->
 <div class="global-toast" id="global-toast"></div>
 
-<script src="config.js"></script>
 
 <script>
   // ══════════════════════════════
   // CONFIG — update API URL here only
   // ══════════════════════════════
-  const API_BASE = (typeof ENV !== 'undefined' && ENV.API_BASE)
-    ? ENV.API_BASE
-    : 'http://localhost:8000/api/v1';
+  const isLocal = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1';
+
+  const API_BASE = isLocal
+    ? 'http://localhost:8000/api/v1'
+    : 'https://backend-task-2swq.onrender.com/api/v1';
+
+  console.log('🔧 API_BASE:', API_BASE);
 
   // ── STATE ──
   let token       = null;
