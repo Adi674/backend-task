@@ -7,10 +7,5 @@ backend/app/models/__pycache__
 backend/app/schemas/__pycache__
 backend/app/api/v1/__pycache__
 backend/app/core/__pycache__
-backend/app/api/__init__.py
-backend/app/api/v1/__init__.py
-backend/app/core/__init__.py
-backend/app/db/__init__.py
-backend/app/models/__init__.py
-backend/app/schemas/__init__.py
+__pycache__/
 
