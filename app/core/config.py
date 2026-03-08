@@ -12,7 +12,6 @@ class Settings(BaseSettings):
 
     @property
     def origins_list(self):
-        # Strip spaces from each origin
         return [o.strip() for o in self.ALLOWED_ORIGINS.split(",")]
 
 settings = Settings()

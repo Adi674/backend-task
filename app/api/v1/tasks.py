@@ -12,10 +12,6 @@ from app.core.response import success_response, error_response
 router = APIRouter()
 
 
-# ─────────────────────────────────────────
-# USER ROUTES — own tasks only
-# ─────────────────────────────────────────
-
 # Create a task
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def create_task(
@@ -60,7 +56,7 @@ def get_my_tasks(
     )
 
 
-# Get single task — task_id in body
+
 @router.get("/single")
 def get_task(
     task_id: UUID,                              # ← query param ?task_id=...
@@ -84,7 +80,6 @@ def get_task(
     )
 
 
-# Update task — task_id in request body
 @router.put("/")
 def update_task(
     payload: TaskUpdate,                        # ← task_id comes from body
@@ -122,15 +117,15 @@ def update_task(
     )
 
 
-# Delete task — task_id in request body
+
 @router.delete("/")
 def delete_task(
-    payload: TaskDelete,                  # ← now request body
+    payload: TaskDelete,          
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
     task = db.query(Task).filter(
-        Task.id == payload.task_id,       # ← from body now
+        Task.id == payload.task_id,      
         Task.owner_id == current_user.id
     ).first()
 
@@ -148,10 +143,6 @@ def delete_task(
         data=None
     )
 
-
-# ─────────────────────────────────────────
-# ADMIN ROUTES — access all tasks
-# ─────────────────────────────────────────
 
 # Admin — get all tasks from all users
 @router.get("/admin/all")
@@ -208,15 +199,14 @@ def admin_update_task(
     )
 
 
-# Admin — delete any task — task_id in body
 @router.delete("/admin")
 def admin_delete_task(
-    payload: TaskDelete,                  # ← now request body
+    payload: TaskDelete,                  
     db: Session = Depends(get_db),
     admin: User = Depends(get_admin_user)
 ):
     task = db.query(Task).filter(
-        Task.id == payload.task_id        # ← from body now
+        Task.id == payload.task_id       
     ).first()
 
     if not task:

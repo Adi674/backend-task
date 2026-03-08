@@ -22,7 +22,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# ✅ CORS first — before everything
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.origins_list,
@@ -31,7 +30,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ OPTIONS preflight handler
 @app.options("/{rest_of_path:path}")
 async def preflight_handler(request: Request, rest_of_path: str):
     return JSONResponse(

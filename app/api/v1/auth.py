@@ -75,7 +75,6 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
     )
 
 
-# Get current logged in user profile
 @router.get("/me")
 def get_me(current_user: User = Depends(get_current_user)):
     return success_response(

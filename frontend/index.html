@@ -48,9 +48,8 @@
     .page { display: none; min-height: 100vh; }
     .page.active { display: flex; }
 
-    /* ══════════════════════════════
-       AUTH PAGE
-    ══════════════════════════════ */
+    
+       /* AUTH PAGE */
     #auth-page {
       align-items: center;
       justify-content: center;
@@ -257,9 +256,8 @@
     .toast.success { background: rgba(67,233,123,0.1); border: 1px solid rgba(67,233,123,0.3); color: var(--success); }
     .toast.error   { background: rgba(255,77,109,0.1); border: 1px solid rgba(255,77,109,0.3); color: var(--error); }
 
-    /* ══════════════════════════════
-       DASHBOARD PAGE
-    ══════════════════════════════ */
+
+       /* DASHBOARD PAGE */
     #dashboard-page {
       flex-direction: column;
       min-height: 100vh;
@@ -860,7 +858,6 @@
       </div>
     </div>
 
-    <!-- RIGHT — Task List -->
     <div class="right-panel">
       <div class="tasks-header">
         <div class="tasks-title">My Tasks</div>
@@ -883,14 +880,10 @@
   </div>
 </div>
 
-<!-- GLOBAL TOAST -->
 <div class="global-toast" id="global-toast"></div>
 
 
 <script>
-  // ══════════════════════════════
-  // CONFIG — update API URL here only
-  // ══════════════════════════════
   const isLocal = window.location.hostname === 'localhost' ||
                 window.location.hostname === '127.0.0.1';
 
@@ -906,9 +899,6 @@
   let allTasks    = [];
   let currentFilter = 'all';
 
-  // ══════════════════════════════
-  // API LOGGER — logs every request & response to console
-  // ══════════════════════════════
 
   async function apiFetch(url, options = {}) {
     const method = options.method || 'GET';
@@ -940,10 +930,6 @@
     }
   }
 
-  // ══════════════════════════════
-  // PASSWORD TOGGLE
-  // ══════════════════════════════
-
   function togglePassword(inputId, btn) {
     const input = document.getElementById(inputId);
     const isHidden = input.type === 'password';
@@ -951,10 +937,7 @@
     btn.textContent = isHidden ? '🙈' : '👁️';
   }
 
-  // ══════════════════════════════
   // AUTH
-  // ══════════════════════════════
-
   function switchTab(tab) {
     document.querySelectorAll('.auth-tab').forEach((t, i) => {
       t.classList.toggle('active', (tab === 'login' ? i === 0 : i === 1));
@@ -1064,9 +1047,7 @@
     switchTab('login');
   }
 
-  // ══════════════════════════════
   // TASKS
-  // ══════════════════════════════
 
   async function loadTasks() {
     try {
@@ -1172,9 +1153,7 @@
     }
   }
 
-  // ══════════════════════════════
   // RENDER
-  // ══════════════════════════════
 
   function renderTasks() {
     const grid   = document.getElementById('tasks-grid');
@@ -1276,10 +1255,7 @@
     document.getElementById('stat-done').textContent     = done;
   }
 
-  // ══════════════════════════════
   // UI HELPERS
-  // ══════════════════════════════
-
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -1325,9 +1301,7 @@
     }
   });
 
-  // ══════════════════════════════
   // INIT — runs AFTER all functions are defined
-  // ══════════════════════════════
   (function init() {
     const savedToken = localStorage.getItem('token');
     const savedUser  = localStorage.getItem('user');

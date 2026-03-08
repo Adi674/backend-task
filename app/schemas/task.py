@@ -18,9 +18,8 @@ class TaskCreate(BaseModel):
         return v.strip()
 
 
-# task_id is now part of request body
 class TaskUpdate(BaseModel):
-    task_id: UUID                           # ← moved here from path
+    task_id: UUID                           
     title: Optional[str] = None
     description: Optional[str] = None
     status: Optional[TaskStatus] = None
@@ -32,7 +31,7 @@ class TaskUpdate(BaseModel):
             raise ValueError("Title cannot be empty")
         return v.strip() if v else v
 
-    # Ensure at least one field is being updated
+    
     def get_update_fields(self) -> dict:
         return {
             key: value
@@ -41,7 +40,7 @@ class TaskUpdate(BaseModel):
                 "description": self.description,
                 "status": self.status
             }.items()
-            if value is not None      # only include fields that were actually sent
+            if value is not None      
         }
 
 
