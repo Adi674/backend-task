@@ -1,11 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
 import os
 from app.core.config import settings
 # Import registry FIRST — registers all models with Base
 import app.db.registry
-
+from fastapi.responses import JSONResponse
 from app.db.base import Base
 from app.db.session import engine
 from app.api.v1 import auth, tasks
