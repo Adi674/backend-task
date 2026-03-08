@@ -1,7 +1,6 @@
 [build]
-  base    = "frontend"
   command = "echo \"const ENV = { API_BASE: '$API_BASE' };\" > config.js"
-  publish = "frontend"
+  publish = "."
 
 [[headers]]
   for = "/*"

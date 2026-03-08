@@ -1,7 +1,12 @@
 [build]
   base    = "frontend"
   command = "echo \"const ENV = { API_BASE: '$API_BASE' };\" > config.js"
-  publish = "frontend"
+  publish = "."
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache"
