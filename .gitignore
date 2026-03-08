@@ -8,4 +8,4 @@ backend/app/schemas/__pycache__
 backend/app/api/v1/__pycache__
 backend/app/core/__pycache__
 __pycache__/
-
+frontend/config.js

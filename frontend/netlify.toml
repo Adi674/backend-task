@@ -1,0 +1,8 @@
+[build]
+  command = "echo \"const ENV = { API_BASE: '$API_BASE' };\" > config.js"
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache"

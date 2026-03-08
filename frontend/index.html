@@ -886,14 +886,15 @@
 <!-- GLOBAL TOAST -->
 <div class="global-toast" id="global-toast"></div>
 
+<script src="config.js"></script>
+
 <script>
   // ══════════════════════════════
   // CONFIG — update API URL here only
   // ══════════════════════════════
-  const CONFIG = {
-    API_BASE: 'http://localhost:8000/api/v1',
-  };
-  const API_BASE = CONFIG.API_BASE;   // shorthand used throughout
+  const API_BASE = (typeof ENV !== 'undefined' && ENV.API_BASE)
+    ? ENV.API_BASE
+    : 'http://localhost:8000/api/v1';
 
   // ── STATE ──
   let token       = null;
