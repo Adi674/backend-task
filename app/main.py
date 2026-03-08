@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
 import os
-
+from app.core.config import settings
 # Import registry FIRST — registers all models with Base
 import app.db.registry
 
@@ -26,11 +26,11 @@ app = FastAPI(
 
 from fastapi.middleware.cors import CORSMiddleware
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+# ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=settings.ALLOWED_ORIGINS.split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
