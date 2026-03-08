@@ -1,10 +1,8 @@
 services:
-  # ── BACKEND ──
   - type: web
     name: taskflow-api
     runtime: python
-    rootDir: backend
-    buildCommand: chmod +x build.sh && ./build.sh
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
@@ -15,14 +13,3 @@ services:
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: 30
-
-  # ── FRONTEND ──
-  - type: web
-    name: taskflow-frontend
-    runtime: static
-    rootDir: frontend
-    staticPublishPath: .
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: no-cache
